@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321172339) do
+ActiveRecord::Schema.define(version: 20140321181142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "rodo_ctes", force: true do |t|
+    t.integer  "number",     limit: 8
+    t.datetime "emitted_at"
+    t.string   "series"
+    t.float    "amount"
+    t.float    "weight"
+    t.integer  "cnpj",       limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

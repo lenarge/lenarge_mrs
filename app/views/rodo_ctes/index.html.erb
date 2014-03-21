@@ -1,0 +1,37 @@
+<h1>Listing rodo_ctes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Emitted at</th>
+      <th>Series</th>
+      <th>Amount</th>
+      <th>Weight</th>
+      <th>Cnpj</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rodo_ctes.each do |rodo_cte| %>
+      <tr>
+        <td><%= rodo_cte.number %></td>
+        <td><%= rodo_cte.emitted_at %></td>
+        <td><%= rodo_cte.series %></td>
+        <td><%= rodo_cte.amount %></td>
+        <td><%= rodo_cte.weight %></td>
+        <td><%= rodo_cte.cnpj %></td>
+        <td><%= link_to 'Show', rodo_cte %></td>
+        <td><%= link_to 'Edit', edit_rodo_cte_path(rodo_cte) %></td>
+        <td><%= link_to 'Destroy', rodo_cte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rodo cte', new_rodo_cte_path %>

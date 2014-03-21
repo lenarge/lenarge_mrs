@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @rodo_cte.number %>
+</p>
+
+<p>
+  <strong>Emitted at:</strong>
+  <%= @rodo_cte.emitted_at %>
+</p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @rodo_cte.series %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @rodo_cte.amount %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @rodo_cte.weight %>
+</p>
+
+<p>
+  <strong>Cnpj:</strong>
+  <%= @rodo_cte.cnpj %>
+</p>
+
+<%= link_to 'Edit', edit_rodo_cte_path(@rodo_cte) %> |
+<%= link_to 'Back', rodo_ctes_path %>
