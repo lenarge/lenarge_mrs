@@ -62,6 +62,11 @@ class RodoCtesController < ApplicationController
     end
   end
 
+  def import
+    RodoCte.import(params[:file])
+    redirect_to rodo_ctes_path, notice: 'Rodo Ctes importados com sucesso.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rodo_cte
