@@ -29,3 +29,10 @@
 <br>
 
 <%= link_to 'New Ferro cte', new_ferro_cte_path %>
+
+<hr />
+
+<%= form_tag import_ferro_ctes_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Importar' %>
+<% end %>

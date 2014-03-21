@@ -61,6 +61,11 @@ class FerroCtesController < ApplicationController
     end
   end
 
+  def import
+    FerroCte.import(params[:file])
+    redirect_to ferro_ctes_path, notice: 'Ferro Ctes importados com sucesso.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ferro_cte
