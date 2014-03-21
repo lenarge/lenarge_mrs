@@ -7,6 +7,9 @@ class RodoCte < ActiveRecord::Base
   validates :emitted_at, presence: true
   validates :cnpj, presence: true, numericality: true
 
+  has_many :cte_allocations
+  has_many :ferro_ctes, through: :cte_allocations
+
   def self.import(file)
     spreadsheet = Roo::Excel.new(file.path, nil, :ignore)
     header = spreadsheet.row(1)
@@ -27,5 +30,13 @@ class RodoCte < ActiveRecord::Base
     end
 
     true
+  end
+
+  def allocated_weight
+    cte_allocations.sum(:weight)
+  end
+
+  def weight_balance
+    weight - allocated_weight
   end
 end

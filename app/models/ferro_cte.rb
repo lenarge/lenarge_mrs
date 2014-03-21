@@ -4,6 +4,9 @@ class FerroCte < ActiveRecord::Base
   validates :series, presence: true
   validates :weight, presence: true
 
+  has_many :cte_allocations
+  has_many :rodo_ctes, through: :cte_allocations
+
   def self.import(file)
     spreadsheet = Roo::Excel.new(file.path, nil, :ignore)
     header = spreadsheet.row(1)
@@ -23,4 +26,11 @@ class FerroCte < ActiveRecord::Base
     true
   end
 
+  def allocated_weight
+    cte_allocations.sum(:weight)
+  end
+
+  def weight_balance
+    weight - allocated_weight
+  end
 end

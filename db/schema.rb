@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321182316) do
+ActiveRecord::Schema.define(version: 20140321201609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cte_allocations", force: true do |t|
+    t.integer  "ferro_cte_id"
+    t.integer  "rodo_cte_id"
+    t.float    "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cte_allocations", ["ferro_cte_id"], name: "index_cte_allocations_on_ferro_cte_id", using: :btree
+  add_index "cte_allocations", ["rodo_cte_id"], name: "index_cte_allocations_on_rodo_cte_id", using: :btree
 
   create_table "ferro_ctes", force: true do |t|
     t.integer  "number",     limit: 8
