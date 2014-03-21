@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321181142) do
+ActiveRecord::Schema.define(version: 20140321182316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ferro_ctes", force: true do |t|
+    t.integer  "number",     limit: 8
+    t.string   "series"
+    t.float    "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rodo_ctes", force: true do |t|
     t.integer  "number",     limit: 8

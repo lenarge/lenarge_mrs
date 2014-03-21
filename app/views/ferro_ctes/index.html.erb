@@ -1,0 +1,31 @@
+<h1>Listing ferro_ctes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Series</th>
+      <th>Weight</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ferro_ctes.each do |ferro_cte| %>
+      <tr>
+        <td><%= ferro_cte.number %></td>
+        <td><%= ferro_cte.series %></td>
+        <td><%= ferro_cte.weight %></td>
+        <td><%= link_to 'Show', ferro_cte %></td>
+        <td><%= link_to 'Edit', edit_ferro_cte_path(ferro_cte) %></td>
+        <td><%= link_to 'Destroy', ferro_cte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ferro cte', new_ferro_cte_path %>
