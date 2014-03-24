@@ -7,8 +7,16 @@ class RodoCte < ActiveRecord::Base
   validates :emitted_at, presence: true
   validates :cnpj, presence: true, numericality: true
 
-  has_many :cte_allocations
+  has_many :cte_allocations, dependent: :destroy
   has_many :ferro_ctes, through: :cte_allocations
+
+  default_scope  { order(number: :asc) }
+
+  def self.unallocated
+    joins("LEFT OUTER JOIN cte_allocations ON cte_allocations.rodo_cte_id = rodo_ctes.id")
+    .group("rodo_ctes.id")
+    .having("sum(cte_allocations.weight) IS NULL OR sum(cte_allocations.weight) < rodo_ctes.weight")
+  end
 
   def self.import(file)
     spreadsheet = Roo::Excel.new(file.path, nil, :ignore)

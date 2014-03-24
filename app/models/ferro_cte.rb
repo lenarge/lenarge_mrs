@@ -4,8 +4,16 @@ class FerroCte < ActiveRecord::Base
   validates :series, presence: true
   validates :weight, presence: true
 
-  has_many :cte_allocations
+  has_many :cte_allocations, dependent: :destroy
   has_many :rodo_ctes, through: :cte_allocations
+
+  default_scope  { order(number: :asc) }
+
+  def self.unallocated
+    joins("LEFT OUTER JOIN cte_allocations ON cte_allocations.ferro_cte_id = ferro_ctes.id")
+    .group("ferro_ctes.id")
+    .having("sum(cte_allocations.weight) IS NULL OR sum(cte_allocations.weight) < ferro_ctes.weight")
+  end
 
   def self.import(file)
     spreadsheet = Roo::Excel.new(file.path, nil, :ignore)
@@ -18,7 +26,7 @@ class FerroCte < ActiveRecord::Base
       ferro_cte_params = {}
       ferro_cte_params[:number] = row['CTE']
       ferro_cte_params[:series] = row['SERIE'].to_i.to_s
-      ferro_cte_params[:weight] = row['PESO']
+      ferro_cte_params[:weight] = row['PESO'] * 1000
 
       FerroCte.create(ferro_cte_params)
     end
