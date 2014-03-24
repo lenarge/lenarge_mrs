@@ -29,7 +29,7 @@ class RodoCte < ActiveRecord::Base
       rodo_cte_params = {}
       rodo_cte_params[:number] = row['CTE']
       rodo_cte_params[:series] = row['SERIE']
-      rodo_cte_params[:weight] = row['PESO']
+      rodo_cte_params[:weight] = row['PESO'].to_f.round(2)
       rodo_cte_params[:amount] = row['FRETE']
       rodo_cte_params[:emitted_at] = "#{row['DATA']} -03:00"
       rodo_cte_params[:cnpj] = row['CNPJ'].delete('/').delete('.').delete('-')

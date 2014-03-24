@@ -26,7 +26,7 @@ class FerroCte < ActiveRecord::Base
       ferro_cte_params = {}
       ferro_cte_params[:number] = row['CTE']
       ferro_cte_params[:series] = row['SERIE'].to_i.to_s
-      ferro_cte_params[:weight] = row['PESO'] * 1000
+      ferro_cte_params[:weight] = row['PESO'].to_f.round(2) * 1000
 
       FerroCte.create(ferro_cte_params)
     end
