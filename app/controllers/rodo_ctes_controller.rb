@@ -5,7 +5,7 @@ class RodoCtesController < ApplicationController
   # GET /rodo_ctes
   # GET /rodo_ctes.json
   def index
-    @rodo_ctes = RodoCte.all
+    @rodo_ctes = RodoCte.reorder(number: :desc)
   end
 
   # GET /rodo_ctes/1
@@ -65,6 +65,9 @@ class RodoCtesController < ApplicationController
   def import
     RodoCte.import(params[:file])
     redirect_to rodo_ctes_path, notice: 'Rodo Ctes importados com sucesso.'
+  end
+
+  def prepare_to_import
   end
 
   private

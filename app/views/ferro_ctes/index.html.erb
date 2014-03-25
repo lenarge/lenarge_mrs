@@ -1,38 +1,25 @@
-<h1>Listing ferro_ctes</h1>
+<h1>Cte's Ferroviários</h1>
 
-<table>
+<%= link_to 'Importar', prepare_to_import_ferro_ctes_path %>
+<%# <%= link_to 'New Ferro cte', new_ferro_cte_path %>
+<hr />
+
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Series</th>
-      <th>Weight</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Cte</th>
+      <th>Peso</th>
+      <th>Saldo de Peso</th>
     </tr>
   </thead>
 
   <tbody>
     <% @ferro_ctes.each do |ferro_cte| %>
       <tr>
-        <td><%= ferro_cte.number %></td>
-        <td><%= ferro_cte.series %></td>
+        <td><%= link_to "#{ferro_cte.number}-#{ferro_cte.series}", ferro_cte %></td>
         <td><%= ferro_cte.weight %></td>
-        <td><%= link_to 'Show', ferro_cte %></td>
-        <td><%= link_to 'Edit', edit_ferro_cte_path(ferro_cte) %></td>
-        <td><%= link_to 'Destroy', ferro_cte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= ferro_cte.weight_balance %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Ferro cte', new_ferro_cte_path %>
-
-<hr />
-
-<%= form_tag import_ferro_ctes_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag 'Importar' %>
-<% end %>

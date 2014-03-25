@@ -1,11 +1,12 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
-  <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to 'Login', new_user_session_path %></li>
+  <li><%= link_to "Ferro Cte's", ferro_ctes_path %></li>
+  <li><%= link_to "Rodo Cte's", rodo_ctes_path %></li>
+  <li><%= link_to 'Alocar Automaticamente', allocate_ctes_path %></li>
 <% end %>
+
 <% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+  <li><%= link_to 'Sair', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
+  <li><%= link_to 'Entrar', new_user_session_path %></li>
 <% end %>

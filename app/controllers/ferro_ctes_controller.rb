@@ -4,7 +4,7 @@ class FerroCtesController < ApplicationController
   # GET /ferro_ctes
   # GET /ferro_ctes.json
   def index
-    @ferro_ctes = FerroCte.all
+    @ferro_ctes = FerroCte.reorder(number: :desc)
   end
 
   # GET /ferro_ctes/1
@@ -64,6 +64,9 @@ class FerroCtesController < ApplicationController
   def import
     FerroCte.import(params[:file])
     redirect_to ferro_ctes_path, notice: 'Ferro Ctes importados com sucesso.'
+  end
+
+  def prepare_to_import
   end
 
   private

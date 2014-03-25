@@ -1,34 +1,57 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Rodo Cte</h1>
 <p>
-  <strong>Number:</strong>
+  <strong>Número:</strong>
   <%= @rodo_cte.number %>
 </p>
 
 <p>
-  <strong>Emitted at:</strong>
-  <%= @rodo_cte.emitted_at %>
+  <strong>Emitido em:</strong>
+  <%= l(@rodo_cte.emitted_at, format: :long) %>
 </p>
 
 <p>
-  <strong>Series:</strong>
+  <strong>Série:</strong>
   <%= @rodo_cte.series %>
 </p>
 
 <p>
-  <strong>Amount:</strong>
+  <strong>Valor:</strong>
   <%= @rodo_cte.amount %>
 </p>
 
 <p>
-  <strong>Weight:</strong>
+  <strong>Peso:</strong>
   <%= @rodo_cte.weight %>
 </p>
 
-<p>
-  <strong>Cnpj:</strong>
-  <%= @rodo_cte.cnpj %>
-</p>
+<%= link_to 'Editar', edit_rodo_cte_path(@rodo_cte) %> |
+<%= link_to 'Voltar', rodo_ctes_path %>
 
-<%= link_to 'Edit', edit_rodo_cte_path(@rodo_cte) %> |
-<%= link_to 'Back', rodo_ctes_path %>
+<hr />
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th colspan="9" class="text-center">Alocações de Cte's Ferroviários</th>
+    </tr>
+    <tr>
+      <th>Cte</th>
+      <th>Peso</th>
+      <th>Saldo de Peso</th>
+      <th><strong>Peso Alocado</strong></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rodo_cte.cte_allocations.each do |allocation| %>
+      <tr>
+        <td><%= link_to "#{allocation.ferro_cte.number}/#{allocation.ferro_cte.series}", allocation.ferro_cte %></td>
+        <td><%= allocation.ferro_cte.weight %></td>
+        <td><%= allocation.ferro_cte.weight_balance %></td>
+        <td><%= allocation.weight %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

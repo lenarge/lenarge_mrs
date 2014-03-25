@@ -1,11 +1,19 @@
 LenargeMrs::Application.routes.draw do
   resources :ferro_ctes do
-    collection {post :import}
+    collection do
+      post :import
+      get :prepare_to_import
+    end
   end
 
   resources :rodo_ctes do
-    collection {post :import}
+    collection do
+      post :import
+      get :prepare_to_import
+    end
   end
+
+  get 'allocate_ctes' => 'cte_allocator#allocate'
 
   devise_for :users
 

@@ -1,44 +1,29 @@
-<h1>Listing rodo_ctes</h1>
+<h1>Cte's Rodoviários</h1>
 
-<table>
+<%= link_to 'Importar', prepare_to_import_rodo_ctes_path %>
+<%# <%= link_to 'Novo Rodo Cte', new_rodo_cte_path %>
+<hr />
+
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Emitted at</th>
-      <th>Series</th>
-      <th>Amount</th>
-      <th>Weight</th>
-      <th>Cnpj</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Cte</th>
+      <th>Emitido em</th>
+      <th>Valor</th>
+      <th>Peso</th>
+      <th>Saldo de Peso</th>
     </tr>
   </thead>
 
   <tbody>
     <% @rodo_ctes.each do |rodo_cte| %>
       <tr>
-        <td><%= rodo_cte.number %></td>
+        <td><%= link_to "#{rodo_cte.number}/#{rodo_cte.series}", rodo_cte %></td>
         <td><%= rodo_cte.emitted_at %></td>
-        <td><%= rodo_cte.series %></td>
         <td><%= rodo_cte.amount %></td>
         <td><%= rodo_cte.weight %></td>
-        <td><%= rodo_cte.cnpj %></td>
-        <td><%= link_to 'Show', rodo_cte %></td>
-        <td><%= link_to 'Edit', edit_rodo_cte_path(rodo_cte) %></td>
-        <td><%= link_to 'Destroy', rodo_cte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= rodo_cte.weight_balance %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Rodo cte', new_rodo_cte_path %>
-
-<hr />
-
-<%= form_tag import_rodo_ctes_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag 'Importar' %>
-<% end %>
