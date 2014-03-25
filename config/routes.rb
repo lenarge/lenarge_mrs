@@ -14,6 +14,8 @@ LenargeMrs::Application.routes.draw do
   end
 
   get 'allocate_ctes' => 'cte_allocator#allocate'
+  get 'report' => 'report#mrs_export'
+  post 'report' => 'report#mrs_export_extract'
 
   devise_for :users
 

@@ -1,0 +1,7 @@
+<h1>Relatório de Exportação para MRS</h1>
+<hr />
+<%= form_tag report_path do  %>
+  Data Inicial: <%= select_date Date.today, prefix: :start_date  %><br />
+  Data Final : <%= select_date Date.today, prefix: :end_date  %><br />
+  <%= submit_tag 'Exportar'  %>
+<% end %>
